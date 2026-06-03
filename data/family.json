@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Arthi",
+        "relationship": "Owner",
+        "age": 20
+    },
+    {
+        "name": "keerthi",
+        "relationship": "Sister",
+        "age": 21
+    }
+]
