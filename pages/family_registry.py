@@ -36,6 +36,10 @@ age = st.number_input(
 )
 
 if st.button("➕ Add Member"):
+    
+    if not name.strip():
+        st.error("Please enter a name")
+        st.stop()
 
     with open(FILE_PATH, "r") as f:
         members = json.load(f)
@@ -52,6 +56,22 @@ if st.button("➕ Add Member"):
     st.success("Member Added Successfully!")
     
     
+    st.divider()
+
+    for index, member in enumerate(members):
+
+        st.info(
+        f"""
+        👤 {member['name']}
+
+        Relationship: {member['relationship']}
+
+        Age: {member['age']}
+        """
+        )
+
+        
+            
 st.divider()
 
 st.subheader("📋 Registered Family Members")
@@ -61,25 +81,34 @@ with open(FILE_PATH, "r") as f:
 
 if members:
 
-    for member in members:
-        
-    #      col1, col2, col3 = st.columns(3)
-
-    # col1.metric("Name", member["name"])
-    # col2.metric("Role", member["relationship"])
-    # col3.metric("Age", member["age"])
-
-    # st.divider()
+    for index, member in enumerate(members):
 
         st.info(
             f"""
             👤 {member['name']}
-            
+
             Relationship: {member['relationship']}
-            
+
             Age: {member['age']}
             """
         )
+
+        if st.button(
+            f"❌ Delete {member['name']}",
+            key=f"delete_{index}"
+        ):
+
+            members.pop(index)
+
+            with open(FILE_PATH, "w") as f:
+                json.dump(
+                    members,
+                    f,
+                    indent=4
+                )
+
+            st.success("Member Deleted")
+            st.rerun()
 
 else:
     st.warning("No members registered yet.")

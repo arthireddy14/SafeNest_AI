@@ -8,5 +8,15 @@
         "name": "keerthi",
         "relationship": "Sister",
         "age": 21
+    },
+    {
+        "name": "Deva",
+        "relationship": "Father",
+        "age": 45
+    },
+    {
+        "name": "Rani",
+        "relationship": "Mother",
+        "age": 35
     }
 ]
